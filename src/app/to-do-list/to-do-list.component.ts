@@ -7,6 +7,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Todo } from '../models/types';
 
 @Component({
@@ -16,7 +17,9 @@ import { Todo } from '../models/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoListComponent implements OnInit {
-  @Input() todos: Todo[] = [];
+  // @Input() todos: Todo[] = [];
+  @Input('todos') newData!: Observable<any>;
+  public todos: Todo[] = [];
   @Output() toggle = new EventEmitter<number>();
 
   constructor(private changeDetectorRef: ChangeDetectorRef) {}
@@ -25,6 +28,10 @@ export class ToDoListComponent implements OnInit {
     // setInterval(() => {
     //   this.changeDetectorRef.markForCheck();
     // }, 5000);
+    // this.newData.subscribe((data) => {
+    //   this.todos = [...this.todos, ...data];
+    //   this.changeDetectorRef.markForCheck();
+    // });
   }
 
   public onToggle(id: number) {
