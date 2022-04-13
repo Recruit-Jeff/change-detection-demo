@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Todo } from '../models/types';
 
@@ -14,16 +8,6 @@ import { Todo } from '../models/types';
   styleUrls: ['./to-do-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ToDoListComponent implements OnInit {
+export class ToDoListComponent {
   @Input() newData!: Observable<Todo[]>;
-  public todos: Todo[] = [];
-
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
-
-  ngOnInit(): void {
-    this.newData.subscribe((data) => {
-      this.todos = data;
-      this.changeDetectorRef.markForCheck();
-    });
-  }
 }
