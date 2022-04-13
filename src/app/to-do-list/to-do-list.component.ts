@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Input,
   OnInit,
@@ -17,9 +18,12 @@ export class ToDoListComponent implements OnInit {
   @Input() newData!: Observable<Todo[]>;
   public todos: Todo[] = [];
 
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+
   ngOnInit(): void {
     this.newData.subscribe((data) => {
       this.todos = data;
+      this.changeDetectorRef.markForCheck();
     });
   }
 }

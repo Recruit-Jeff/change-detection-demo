@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Todo } from './models/types';
 import { initialData } from './data/initial-data';
 import { BehaviorSubject } from 'rxjs';
 @Component({
