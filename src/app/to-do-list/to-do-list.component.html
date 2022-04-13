@@ -1,7 +1,5 @@
-<!-- <div *ngFor="let todo of todos" class="todo"> -->
-<!-- <div *ngFor="let todo of newData | async" class="todo"> -->
 <div *ngFor="let todo of todos" class="todo">
-    <span (click)="onToggle(todo.id)">
+    <span>
         {{todo.description}} --> completed: {{todo.isCompleted}}
     </span>
 </div>

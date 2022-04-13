@@ -1,8 +1,7 @@
 <div class="container">
-    <app-to-do-list [todos]="todos" (toggle)="onToggle($event)">
+    <app-to-do-list [newData]="todosInputObservable">
     </app-to-do-list>
     <div class="buttonContainer">
-        <button class="button" (click)="toggleFirst()">Toggle First Item</button>
         <button class="button" (click)="addTodo()">Add To-do to List</button>
     </div>
 </div>
