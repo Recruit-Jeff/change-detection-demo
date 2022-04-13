@@ -13,7 +13,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AppComponent {
   // public todos: Todo[] = initialData;
-  public todos = new BehaviorSubject(initialData);
+  public todosLocal: Todo[] = initialData;
+  public todos = new BehaviorSubject(this.todosLocal);
   public title = 'change-detection-demo';
 
   public toggleFirst() {
@@ -36,19 +37,16 @@ export class AppComponent {
     //   isCompleted: false,
     // });
     // this.todos = newTodos;
-    this.todos.next([
-      {
-        id: 3,
-        description: 'The third to-do item',
-        isCompleted: false,
-      },
-    ]);
+    this.todosLocal.push({
+      id: 3,
+      description: 'The third to-do item',
+      isCompleted: false,
+    });
+    this.todos.next(this.todosLocal);
   }
 
   public onToggle(id: number) {
     // const todoToToggle = this.todos.find((todo) => todo.id === id)!;
     // todoToToggle.isCompleted = !todoToToggle.isCompleted;
   }
-
-  public dummy() {}
 }

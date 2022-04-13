@@ -18,7 +18,7 @@ import { Todo } from '../models/types';
 })
 export class ToDoListComponent implements OnInit {
   // @Input() todos: Todo[] = [];
-  @Input('todos') newData!: Observable<any>;
+  @Input('todos') newData!: Observable<Todo[]>;
   public todos: Todo[] = [];
   @Output() toggle = new EventEmitter<number>();
 
@@ -28,10 +28,10 @@ export class ToDoListComponent implements OnInit {
     // setInterval(() => {
     //   this.changeDetectorRef.markForCheck();
     // }, 5000);
-    // this.newData.subscribe((data) => {
-    //   this.todos = [...this.todos, ...data];
-    //   this.changeDetectorRef.markForCheck();
-    // });
+    this.newData.subscribe((data) => {
+      this.todos = data;
+      this.changeDetectorRef.markForCheck();
+    });
   }
 
   public onToggle(id: number) {
